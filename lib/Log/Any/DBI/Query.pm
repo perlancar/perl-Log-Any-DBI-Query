@@ -9,15 +9,13 @@ use warnings;
 use Log::Any '$log';
 
 use DBI;
-use List::Util qw(first);
 use Log::Any::For::Class qw(add_logging_to_class);
-use Scalar::Util qw(blessed);
 
 sub _precall_logger {
     my $args = shift;
     my $margs = $args->{args};
 
-    $log->tracef("SQL query: %s", $margs->[1]);
+    $log->tracef("SQL query: {{%s}}", $margs->[1]);
 }
 
 sub _postcall_logger {}
@@ -36,10 +34,18 @@ sub import {
             classes => \@classes,
             precall_logger => \&_precall_logger,
             postcall_logger => \&_postcall_logger,
-            filter_methods => ['DBI::db::prepare', 'DBI::db::do'],
+            filter_methods => sub {
+                my $meth = shift;
+                return unless $meth =~
+                    /\A(
+                         DBI::db::(prepare|do)
+                     )\z/x;
+                1;
+            },
         );
     };
 
+    # DBI is used here to trigger loading of DBI::db
     $doit->("DBI::db");
 }
 
@@ -57,7 +63,13 @@ sub import {
 
 From command-line:
 
- % TRACE=1 perl -MLog::Any::App -MDBI -MLog::Any::DBI::Query your-dbi-app.pl
+ % perl -MLog::Any::Adapter::ScreenColordLevel -MLog::Any::DBI::Query your-dbi-app.pl
+
+
+=head1 DESCRIPTION
+
+This is a simple module you can do to log SQL statements/queries for your
+L<DBI>-based applications.
 
 
 =head1 SEE ALSO
