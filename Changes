@@ -1,5 +1,12 @@
 Revision history for Log-Any-DBI-Query
 
+0.02    2015-08-17 (PERLANCAR)
+
+	- No functional changes.
+
+	- Switch from Log::Any to Log::Any::IfLOG.
+
+
 0.01     2015-06-16 (PERLANCAR)
 
          - First release.
