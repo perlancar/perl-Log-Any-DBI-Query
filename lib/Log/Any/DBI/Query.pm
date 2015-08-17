@@ -6,7 +6,7 @@ package Log::Any::DBI::Query;
 use 5.010001;
 use strict;
 use warnings;
-use Log::Any '$log';
+use Log::Any::IfLOG '$log';
 
 use DBI;
 use Log::Any::For::Class qw(add_logging_to_class);
