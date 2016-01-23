@@ -1,5 +1,13 @@
 Revision history for Log-Any-DBI-Query
 
+0.04    2016-01-23 (PERLANCAR)
+
+	- No functional changes.
+
+	- Add description of difference between this module and
+	  Log::Any::For::DBI.
+
+
 0.03    2016-01-23 (PERLANCAR)
 
 	- Also log queries from select*() methods.
