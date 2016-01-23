@@ -102,6 +102,9 @@ For queries, it logs calls to C<prepare()>, C<do()>, C<select*>.
 
 For results, it logs calls to C<do()>, C<select*>, C<fetch*>.
 
+Compared to L<Log::Any::For::DBI>, it produces a bit less noise if you are only
+concerned with logging queries.
+
 
 =head1 ENVIRONMENT
 
