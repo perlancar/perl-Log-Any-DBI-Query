@@ -1,5 +1,10 @@
 Revision history for Log-Any-DBI-Query
 
+0.05    2016-02-11 (PERLANCAR)
+
+	- Remove development debugging log.
+
+
 0.04    2016-01-23 (PERLANCAR)
 
 	- No functional changes.
