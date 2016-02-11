@@ -26,7 +26,7 @@ sub _precall_logger {
 sub _postcall_logger {
     my $args = shift;
 
-    $log->tracef("D1: %s", $args->{name});
+    #$log->tracef("D1: %s", $args->{name});
 
     my ($meth) = $args->{name} =~ /.+::(.+)/;
     return if $meth =~ /\Aprepare\z/;
