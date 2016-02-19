@@ -29,7 +29,7 @@ sub _postcall_logger {
     #$log->tracef("D1: %s", $args->{name});
 
     my ($meth) = $args->{name} =~ /.+::(.+)/;
-    return if $meth =~ /\Aprepare\z/;
+    return if $meth =~ /\A(prepare|execute)\z/;
     $log->tracef("SQL result (%s): %s", $meth, $args->{result});
 }
 
@@ -51,7 +51,8 @@ sub import {
                 my $meth = shift;
                 return 1 if $log_query && $meth =~
                     /\A(
-                         DBI::db::(prepare|do|select.+)
+                         DBI::db::(prepare|do|select.+) |
+                         DBI::st::(execute)
                      )\z/x;
                 return 1 if $log_result && $meth =~
                     /\A(
