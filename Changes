@@ -1,5 +1,11 @@
 Revision history for Log-Any-DBI-Query
 
+0.06    2016-02-19 (PERLANCAR)
+
+	- Also log execute() in addition to prepare() because it contains
+	  the bind parameters.
+
+
 0.05    2016-02-11 (PERLANCAR)
 
 	- Remove development debugging log.
