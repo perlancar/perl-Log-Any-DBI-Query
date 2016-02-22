@@ -20,7 +20,11 @@ sub _precall_logger {
 
     my ($meth) = $args->{name} =~ /.+::(.+)/;
     return if $meth =~ /\Afetch.+\z/;
-    $log->tracef("SQL query (%s): {{%s}}", $meth, $margs->[1]);
+    if ($meth eq 'execute') {
+        $log->tracef("SQL query (%s): {{%s}}", $meth, [@{$margs}[1..$#{$margs}]]);
+    } else {
+        $log->tracef("SQL query (%s): {{%s}}", $meth, $margs->[1]);
+    }
 }
 
 sub _postcall_logger {
